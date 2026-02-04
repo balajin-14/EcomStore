@@ -3,9 +3,9 @@ namespace ecommerce;
 using { cuid } from '@sap/cds/common';
 
 type UserRole : String enum {
-  Admin;
   Customer;
 }
+
 
 type OrderStatus : String enum {
   Pending;
