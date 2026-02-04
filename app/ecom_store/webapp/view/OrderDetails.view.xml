@@ -1,0 +1,68 @@
+<mvc:View
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  controllerName="ecomstore.controller.OrderDetails"
+  displayBlock="true">
+
+  <Page
+    title="Order Details"
+    showNavButton="true"
+    navButtonPress=".onNavBack">
+
+    <content>
+
+      <!-- ORDER HEADER -->
+      <ObjectHeader
+        title="Order #{customer>ID}"
+        number="{customer>status}"
+        numberState="Information" />
+
+      <!-- ORDER ITEMS -->
+      <Table
+        items="{customer>items}"
+        inset="false">
+
+        <columns>
+          <Column><Text text="Product"/></Column>
+          <Column hAlign="Center"><Text text="Qty"/></Column>
+          <Column hAlign="End"><Text text="Price"/></Column>
+          <Column hAlign="End"><Text text="Subtotal"/></Column>
+        </columns>
+
+        <items>
+          <ColumnListItem>
+            <cells>
+
+              <Text text="{customer>product/name}"/>
+
+              <Text text="{customer>quantity}"/>
+
+              <ObjectNumber
+                number="{customer>price}"
+                unit="₹"/>
+
+              <ObjectNumber
+                number="{
+                  parts: [
+                    { path: 'customer>quantity' },
+                    { path: 'customer>price' }
+                  ],
+                  formatter: '.formatSubtotal'
+                }"
+                unit="₹"/>
+
+            </cells>
+          </ColumnListItem>
+        </items>
+
+      </Table>
+
+      <!-- TOTAL -->
+      <Toolbar>
+        <ToolbarSpacer/>
+        <Title text="Total: ₹ {customer>totalAmount}"/>
+      </Toolbar>
+
+    </content>
+  </Page>
+</mvc:View>

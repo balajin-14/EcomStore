@@ -1,0 +1,195 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:css="sap.ui.layout.cssgrid"
+    xmlns:core="sap.ui.core"
+    controllerName="ecomstore.controller.ProductList"
+>
+    <Page class="sapUiContentPadding">
+        <!-- ===== HEADER BAR ===== -->
+        <customHeader>
+            <Bar>
+                <contentLeft>
+                    <SearchField
+                        width="20rem"
+                        placeholder="Search products..."
+                        liveChange=".onSearch"
+                    />
+                </contentLeft>
+
+                <contentRight>
+                    <Button
+                        icon="sap-icon://shipping-status"
+                        text="My Orders"
+                        press=".onGoToOrders"
+                    />
+
+                    <Button
+                        icon="sap-icon://cart"
+                        text="Cart"
+                        type="Emphasized"
+                        press=".onGoToCart"
+                    />
+
+                    <Button
+                        icon="sap-icon://log"
+                        text="Logout"
+                        press=".onLogout"
+                    />
+                </contentRight>
+            </Bar>
+        </customHeader>
+
+        <content>
+            <!-- ===== FEATURED PRODUCTS CAROUSEL ===== -->
+            <Carousel
+                height="260px"
+                class="sapUiMediumMarginBottom"
+                showPageIndicator="true"
+            >
+                <Image
+                    src="https://picsum.photos/1200/400?1"
+                    alt="Featured Product 1"
+                />
+                <Image
+                    src="https://picsum.photos/1200/400?2"
+                    alt="Featured Product 2"
+                />
+                <Image
+                    src="https://picsum.photos/1200/400?3"
+                    alt="Featured Product 3"
+                />
+            </Carousel>
+
+            <!-- ===== FILTER BAR ===== -->
+            <Toolbar class="sapUiSmallMarginBottom">
+                <Title
+                    text="All Products"
+                    level="H4"
+                />
+                <ToolbarSpacer />
+
+                <Select
+                    width="12rem"
+                    change=".onCategoryChange"
+                >
+                    <items>
+                        <core:Item
+                            key="all"
+                            text="All Categories"
+                        />
+                        <core:Item
+                            key="electronics"
+                            text="Electronics"
+                        />
+                        <core:Item
+                            key="fashion"
+                            text="Fashion"
+                        />
+                        <core:Item
+                            key="home"
+                            text="Home"
+                        />
+                    </items>
+                </Select>
+
+                <Select
+                    width="12rem"
+                    change=".onSortChange"
+                >
+                    <items>
+                        <core:Item
+                            key="priceLow"
+                            text="Price: Low to High"
+                        />
+                        <core:Item
+                            key="priceHigh"
+                            text="Price: High to Low"
+                        />
+                    </items>
+                </Select>
+            </Toolbar>
+
+            <!-- ===== PRODUCT GRID (CatalogService default model) ===== -->
+            <f:GridList
+                items="{/Products}"
+                growing="true"
+                growingScrollToLoad="true"
+            >
+                <f:customLayout>
+                    <css:GridBoxLayout boxMinWidth="260px" />
+                </f:customLayout>
+
+                <f:items>
+                    <f:GridListItem>
+                        <VBox
+                            class="sapUiSmallMargin sapUiContentPadding"
+                            alignItems="Center"
+                        >
+                            <!-- IMAGE -->
+                            <Image
+                                src="{= ${imageUrl} || 'https://via.placeholder.com/300x180?text=No+Image' }"
+                                width="100%"
+                                height="180px"
+                                densityAware="false"
+                                class="sapUiSmallMarginBottom"
+                            />
+
+                            <!-- NAME -->
+                            <Title
+                                text="{name}"
+                                level="H5"
+                                textAlign="Center"
+                            />
+
+                            <!-- RATING -->
+                            <HBox
+                                alignItems="Center"
+                                justifyContent="Center"
+                                class="sapUiTinyMarginTop"
+                            >
+                                <RatingIndicator
+                                    value="{= Number(${rating}) || 0 }"
+                                    maxValue="5"
+                                    enabled="false"
+                                    iconSize="1rem"
+                                />
+
+                                <Text
+                                    text="{= Number(${ratingCount}) > 0 ? '(' + ${ratingCount} + ')' : '' }"
+                                    class="sapUiTinyMarginBegin"
+                                />
+                            </HBox>
+
+                            <!-- DESCRIPTION -->
+                            <Text
+                                text="{description}"
+                                wrapping="true"
+                                maxLines="3"
+                                textAlign="Center"
+                                class="sapUiTinyMarginTop"
+                            />
+
+                            <!-- PRICE -->
+                            <Text
+                                text="{path: 'price', formatter: '.formatPrice'}"
+                                class="sapUiSmallMarginTop"
+                            />
+
+                            <!-- ADD TO CART -->
+                            <Button
+                                text="Add to Cart"
+                                icon="sap-icon://cart"
+                                type="Emphasized"
+                                press=".onAddToCart"
+                                width="100%"
+                                class="sapUiSmallMarginTop"
+                            />
+                        </VBox>
+                    </f:GridListItem>
+                </f:items>
+            </f:GridList>
+        </content>
+    </Page>
+</mvc:View>

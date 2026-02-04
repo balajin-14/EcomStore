@@ -1,0 +1,63 @@
+<mvc:View
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  controllerName="ecomstore.controller.Login"
+  displayBlock="true">
+
+  <Page title="Login">
+
+    <content>
+      <VBox
+        width="100%"
+        alignItems="Center"
+        justifyContent="Center"
+        class="sapUiMediumMarginTop">
+
+        <Panel
+          width="360px"
+          headerText="Login">
+
+          <VBox
+            width="80%"
+            class="sapUiMediumMargin"
+            renderType="Bare">
+
+            <!-- EMAIL -->
+            <Label text="Email" />
+            <Input
+              id="loginEmailInput"
+              type="Email"
+              placeholder="Enter email"
+              required="true" />
+
+            <!-- PASSWORD -->
+            <Label
+              text="Password"
+              class="sapUiSmallMarginTop" />
+            <Input
+              id="loginPasswordInput"
+              type="Password"
+              placeholder="Enter password"
+              required="true" />
+
+            <!-- LOGIN -->
+            <Button
+              text="Login"
+              type="Emphasized"
+              class="sapUiMediumMarginTop"
+              press=".onLogin" />
+
+            <!-- SIGNUP -->
+            <Link
+              text="New user? Create an account"
+              class="sapUiSmallMarginTop"
+              press=".onGoToSignup" />
+
+          </VBox>
+        </Panel>
+
+      </VBox>
+    </content>
+
+  </Page>
+</mvc:View>

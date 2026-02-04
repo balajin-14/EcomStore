@@ -1,0 +1,236 @@
+{
+  "_version": "1.76.0",
+  "sap.app": {
+    "id": "ecomstore",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.20.0",
+      "toolsId": "8ece5471-f552-4d11-a776-c6d597cd12fa"
+    },
+    "dataSources": {
+      "authService": {
+        "uri": "/odata/v4/auth/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "4.0"
+        }
+      },
+      "catalogService": {
+        "uri": "/odata/v4/catalog/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "4.0"
+        }
+      },
+      "customerService": {
+        "uri": "/odata/v4/customer/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "4.0"
+        }
+      },
+      "adminService": {
+        "uri": "/odata/v4/admin/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.143.2",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "ecomstore.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "catalogService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "auth": {
+        "type": "sap.ui.model.odata.v4.ODataModel",
+        "dataSource": "authService",
+        "settings": {
+          "synchronizationMode": "None"
+        }
+      },
+      "customer": {
+        "type": "sap.ui.model.odata.v4.ODataModel",
+        "dataSource": "customerService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "synchronizationMode": "None",
+          "groupId": "$auto",
+          "updateGroupId": "customer"
+        }
+      },
+      "admin": {
+        "type": "sap.ui.model.odata.v4.ODataModel",
+        "dataSource": "adminService",
+        "preload": false,
+        "settings": {
+          "operationMode": "Server",
+          "synchronizationMode": "None",
+          "groupId": "$auto",
+          "updateGroupId": "admin"
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "ecomstore.view",
+        "async": true
+      },
+      "routes": [
+        {
+          "name": "Login",
+          "pattern": "",
+          "target": "Login"
+        },
+        {
+          "name": "Signup",
+          "pattern": "signup",
+          "target": "Signup"
+        },
+        {
+          "name": "ProductList",
+          "pattern": "products",
+          "target": "ProductList"
+        },
+        {
+          "name": "Cart",
+          "pattern": "cart",
+          "target": "Cart"
+        },
+        {
+          "name": "MyOrders",
+          "pattern": "orders",
+          "target": "MyOrders"
+        },
+        {
+          "name": "OrderDetails",
+          "pattern": "orders/{orderId}",
+          "target": "OrderDetails"
+        },
+        {
+          "name": "AdminDashboard",
+          "pattern": "admin",
+          "target": "AdminDashboard"
+        },
+        {
+          "name": "AdminOrders",
+          "pattern": "admin/orders",
+          "target": "AdminOrders"
+        },
+        {
+          "name": "AdminOrderDetails",
+          "pattern": "admin/orders/{orderId}",
+          "target": "AdminOrderDetails"
+        }
+      ],
+      "targets": {
+        "Login": {
+          "name": "Login",
+          "viewLevel": 0
+        },
+        "Signup": {
+          "name": "Signup",
+          "viewLevel": 1
+        },
+        "ProductList": {
+          "name": "ProductList",
+          "viewLevel": 1
+        },
+        "Cart": {
+          "name": "Cart",
+          "viewLevel": 2
+        },
+        "MyOrders": {
+          "name": "MyOrders",
+          "viewLevel": 2
+        },
+        "OrderDetails": {
+          "name": "OrderDetails",
+          "viewLevel": 3
+        },
+        "AdminDashboard": {
+          "name": "AdminDashboard",
+          "viewLevel": 1
+        },
+        "AdminOrders": {
+          "name": "AdminOrders",
+          "viewLevel": 2
+        },
+        "AdminOrderDetails": {
+          "name": "AdminOrderDetails",
+          "viewLevel": 3
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "ecomstore.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  }
+}

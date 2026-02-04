@@ -1,0 +1,92 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    controllerName="ecomstore.controller.AdminDashboard"
+    displayBlock="true"
+>
+    <Page title="Admin – Product Management">
+
+        <customHeader>
+            <Bar>
+                <contentLeft>
+                    <Title text="Admin – Product Management" />
+                </contentLeft>
+
+                <contentRight>
+                    <Button
+                        text="Add Product"
+                        icon="sap-icon://add"
+                        press=".onAddProduct"
+                    />
+
+                    <Button
+                        text="Add Supplier"
+                        icon="sap-icon://supplier"
+                        press=".onAddSupplier"
+                    />
+
+                    <Button
+                        text="Manage Orders"
+                        icon="sap-icon://sales-order"
+                        press=".onGoToOrders"
+                    />
+
+                    <Button
+                        text="Logout"
+                        type="Negative"
+                        press=".onLogout"
+                    />
+                </contentRight>
+            </Bar>
+        </customHeader>
+
+        <content>
+            <Table
+                id="productTable"
+                items="{admin>/Products}"
+                inset="false"
+                mode="None"
+            >
+                <columns>
+                    <Column>
+                        <Text text="Name" />
+                    </Column>
+
+                    <Column hAlign="End">
+                        <Text text="Price" />
+                    </Column>
+
+                    <Column width="8rem">
+                        <Text text="Actions" />
+                    </Column>
+                </columns>
+
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{admin>name}" />
+
+                            <ObjectNumber
+                                number="{admin>price}"
+                                unit="₹"
+                            />
+
+                            <HBox>
+                                <Button
+                                    icon="sap-icon://edit"
+                                    type="Transparent"
+                                    press=".onEditProduct"
+                                />
+                                <Button
+                                    icon="sap-icon://delete"
+                                    type="Negative"
+                                    press=".onDeleteProduct"
+                                />
+                            </HBox>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>

@@ -1,0 +1,34 @@
+<mvc:View
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  controllerName="ecomstore.controller.AdminOrders">
+
+  <Page title="All Orders">
+
+    <content>
+
+      <List
+        id="adminOrdersList"
+        items="{admin>/Orders}"
+        mode="SingleSelectMaster">
+
+        <ObjectListItem
+          title="Order {admin>ID}"
+          number="{admin>status}"
+          numberState="Information"
+          type="Active"
+          press=".onOrderPress">
+
+          <attributes>
+            <ObjectAttribute
+              text="{admin>customer/email}" />
+          </attributes>
+
+        </ObjectListItem>
+
+      </List>
+
+    </content>
+
+  </Page>
+</mvc:View>

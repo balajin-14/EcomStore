@@ -1,0 +1,31 @@
+<mvc:View
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  controllerName="ecomstore.controller.MyOrders">
+
+  <Page
+    title="My Orders"
+    showNavButton="true"
+    navButtonPress=".onNavBack">
+
+    <content>
+
+      <List
+        id="ordersList"
+        items="{customer>/Orders}"
+        mode="SingleSelectMaster">
+
+        <ObjectListItem
+          title="Order {customer>ID}"
+          intro="{customer>status}"
+          number="{customer>totalAmount}"
+          numberUnit="₹"
+          type="Active"
+          press=".onOrderSelect" />
+
+      </List>
+
+    </content>
+  </Page>
+
+</mvc:View>

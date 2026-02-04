@@ -1,0 +1,42 @@
+<mvc:View
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  controllerName="ecomstore.controller.Signup"
+  displayBlock="true">
+
+  <Page title="Create Account">
+    <content>
+      <VBox width="100%" alignItems="Center" class="sapUiMediumMarginTop">
+        <Panel width="400px" headerText="Sign Up" class="sapUiResponsivePadding">
+          <VBox renderType="Bare" class="sapUiSmallMargin">
+
+            <!-- USERNAME -->
+            <Label text="Username" />
+            <Input id="signupNameInput" placeholder="Enter username" required="true" />
+
+            <!-- EMAIL -->
+            <Label text="Email" class="sapUiSmallMarginTop" />
+            <Input id="signupEmailInput" type="Email" placeholder="Enter email" required="true" />
+
+            <!-- PASSWORD -->
+            <Label text="Password" class="sapUiSmallMarginTop" />
+            <Input id="signupPasswordInput" type="Password" placeholder="Enter password" required="true" />
+
+            <!-- CONFIRM PASSWORD -->
+            <Label text="Confirm Password" class="sapUiSmallMarginTop" />
+            <Input id="signupConfirmPasswordInput" type="Password" placeholder="Confirm password" required="true" />
+
+            <!-- CREATE ACCOUNT -->
+            <Button text="Create Account" type="Emphasized"
+                    class="sapUiMediumMarginTop" press=".onSignup" />
+
+            <!-- BACK TO LOGIN -->
+            <Link text="Already have an account? Login"
+                  class="sapUiSmallMarginTop" press=".onGoToLogin" />
+
+          </VBox>
+        </Panel>
+      </VBox>
+    </content>
+  </Page>
+</mvc:View>

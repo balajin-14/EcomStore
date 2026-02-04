@@ -1,0 +1,48 @@
+<mvc:View
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  controllerName="ecomstore.controller.AdminOrderDetails">
+
+  <Page
+    title="Order Details"
+    showNavButton="true"
+    navButtonPress=".onNavBack">
+
+    <content>
+
+      <!-- ORDER HEADER -->
+      <ObjectHeader
+        title="Order {admin>ID}"
+        number="{admin>status}" />
+
+      <!-- ORDER ITEMS -->
+      <List
+        items="{admin>items}">
+        <ObjectListItem
+          title="{admin>product/name}"
+          number="{
+            parts: [
+              { path: 'admin>quantity' },
+              { path: 'admin>price' }
+            ],
+            formatter: '.formatSubtotal'
+          }">
+
+          <attributes>
+            <ObjectAttribute
+              text="Qty: {admin>quantity}" />
+          </attributes>
+
+        </ObjectListItem>
+      </List>
+
+      <!-- TOTAL -->
+      <Toolbar>
+        <ToolbarSpacer />
+        <Text text="Total: ₹ {admin>totalAmount}" />
+      </Toolbar>
+
+    </content>
+  </Page>
+
+</mvc:View>

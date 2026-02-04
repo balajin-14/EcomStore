@@ -1,0 +1,97 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <Dialog
+        id="productDialog"
+        title="Product Details"
+        class="sapUiResponsivePadding"
+        contentWidth="400px"
+    >
+        <VBox class="sapUiSmallMargin">
+            <Label text="Name" />
+            <Input
+                value="{form>/name}"
+                required="true"
+            />
+            <Label
+                text="Description"
+                class="sapUiSmallMarginTop"
+            />
+            <Input value="{form>/description}" />
+
+            <Label
+                text="Price"
+                class="sapUiSmallMarginTop"
+            />
+            <Input
+                value="{form>/price}"
+                type="Number"
+                required="true"
+            />
+
+            <Label
+                text="Stock"
+                class="sapUiSmallMarginTop"
+            />
+            <Input
+                value="{form>/stock}"
+                type="Number"
+            />
+            <Label
+                text="Image URL"
+                class="sapUiSmallMarginTop"
+            />
+            <Input value="{form>/imageUrl}" />
+
+            <Label
+                text="Rating"
+                class="sapUiSmallMarginTop"
+            />
+            <Input
+                value="{form>/rating}"
+                type="Number"
+            />
+            <Label
+                text="Rating Count"
+                class="sapUiSmallMarginTop"
+            />
+            <Input
+                value="{form>/ratingCount}"
+                type="Number"
+            />
+            <Label
+                text="Supplier"
+                class="sapUiSmallMarginTop"
+            />
+            <Input
+                value="{form>/supplierName}"
+                showSuggestion="true"
+                suggest=".onSupplierSuggest"
+                suggestionItemSelected=".onSupplierSelect"
+                suggestionItems="{admin>/Suppliers}"
+            >
+                <suggestionItems>
+                    <core:Item
+                        key="{admin>ID}"
+                        text="{admin>name}"
+                    />
+                </suggestionItems>
+            </Input>
+        </VBox>
+
+        <beginButton>
+            <Button
+                text="Save"
+                type="Emphasized"
+                press=".onSaveProduct"
+            />
+        </beginButton>
+        <endButton>
+            <Button
+                text="Cancel"
+                press=".onCloseDialog"
+            />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

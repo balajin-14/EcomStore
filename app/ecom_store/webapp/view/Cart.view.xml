@@ -1,0 +1,83 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    controllerName="ecomstore.controller.Cart"
+    displayBlock="true"
+>
+    <Page title="My Cart">
+        <content>
+            <!-- CART ITEMS -->
+            <List
+                id="cartList"
+                items="{
+  path: 'customer>/CartItems',
+  filters: [
+    { path: 'customerId', operator: 'EQ', value1: '${localStorage>/userId}' }
+  ]
+}"
+                inset="false"
+                growing="true"
+            >
+                <CustomListItem>
+                    <HBox
+                        justifyContent="SpaceBetween"
+                        alignItems="Center"
+                        width="100%"
+                    >
+                        <!-- PRODUCT INFO -->
+                        <VBox width="40%">
+                            <Text text="{customer>productName}" />
+                            <ObjectNumber
+                                number="{customer>productPrice}"
+                                unit="₹"
+                            />
+                        </VBox>
+
+                        <!-- QUANTITY -->
+                        <HBox alignItems="Center">
+                            <Button
+                                icon="sap-icon://less"
+                                press=".onDecreaseQty"
+                            />
+
+                            <Text
+                                text="{customer>quantity}"
+                                class="sapUiSmallMarginBegin sapUiSmallMarginEnd"
+                            />
+
+                            <Button
+                                icon="sap-icon://add"
+                                press=".onIncreaseQty"
+                            />
+                        </HBox>
+
+                        <!-- REMOVE -->
+                        <Button
+                            icon="sap-icon://delete"
+                            type="Negative"
+                            press=".onRemoveItem"
+                        />
+                    </HBox>
+                </CustomListItem>
+            </List>
+        </content>
+
+        <!-- FOOTER -->
+        <footer>
+            <Toolbar>
+                <Text
+                    id="totalText"
+                    text="Total: ₹ 0"
+                />
+
+                <ToolbarSpacer />
+
+                <Button
+                    text="Place Order"
+                    type="Emphasized"
+                    press=".onPlaceOrder"
+                />
+            </Toolbar>
+        </footer>
+    </Page>
+</mvc:View>

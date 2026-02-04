@@ -1,0 +1,47 @@
+{
+  "xsappname": "ecommerce-app",
+  "tenant-mode": "dedicated",
+  "description": "Security configuration for Ecommerce application",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.Admin",
+      "description": "Admin access"
+    },
+    {
+      "name": "$XSAPPNAME.Customer",
+      "description": "Customer access"
+    }
+  ],
+  "roles": [
+    {
+      "name": "Admin",
+      "description": "Administrator role",
+      "scope-references": [
+        "$XSAPPNAME.Admin"
+      ]
+    },
+    {
+      "name": "Customer",
+      "description": "Customer role",
+      "scope-references": [
+        "$XSAPPNAME.Customer"
+      ]
+    }
+  ],
+  "role-collections": [
+    {
+      "name": "AdminRoleCollection",
+      "description": "Role collection for Admin users",
+      "role-references": [
+        "$XSAPPNAME.Admin"
+      ]
+    },
+    {
+      "name": "CustomerRoleCollection",
+      "description": "Role collection for Customer users",
+      "role-references": [
+        "$XSAPPNAME.Customer"
+      ]
+    }
+  ]
+}
