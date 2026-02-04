@@ -6,7 +6,6 @@ type UserRole : String enum {
   Customer;
 }
 
-
 type OrderStatus : String enum {
   Pending;
   Paid;
